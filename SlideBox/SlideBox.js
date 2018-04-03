@@ -17,7 +17,7 @@ slider_box.style.margin = "0 auto";
 	function sliderList(){
 		var size =  Math.round(window.innerWidth * slider_box.getAttribute("width") / 100) + "px";
 		for(var i = 0; i <= images.length -1; i++){
-slider_list.innerHTML += "<li id='img' style='" + "background-image: url(images/" + images[i] + "); width:" + size + "; height: 100%; float: left; background-size: 100% auto; background-position: center;'></li>";
+slider_list.innerHTML += "<li id='img' style='" + "background-image: url(images/" + images[i] + "); width:" + size + "; height: 100%; float: left; background-size: cover; background-position: center;'></li>";
 		}
 	}
 size();
