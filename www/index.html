@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Babylon</title>
+</head>
+<body>
+<canvas id="canvas" width="600" height="600"></canvas>
+<script src="js/babylon.js"></script>
+<script src="js/babylonjs.loaders.min.js"></script>
+<script type="text/javascript">
+function deg(d){
+    return  d/(6*10) / Math.PI;
+}
+</script>
+<script type="text/javascript">
+var canvas = document.getElementById("canvas");
+
+const engine = new BABYLON.Engine(canvas, true);
+
+// Scene
+const scene = new BABYLON.Scene(engine);
+
+// Camera
+//const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0,0,-10), scene);
+var camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 70, new BABYLON.Vector3(0, 0, 0), scene);
+    camera.attachControl(canvas, true);
+
+// Light
+const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0,1,0) ,scene);
+
+// Box
+//const box = new BABYLON.MeshBuilder.CreateBox('box', {}, scene);
+//box.position = new BABYLON.Vector3(0, 0, 0);
+
+// Append glTF model to scene.
+BABYLON.SceneLoader.Append("models/", "isometric-tree.obj", scene);
+
+/*const frameRate = 1;
+const ySlide = new BABYLON.Animation("ySlide", "rotation.y", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+
+const keyFrames = [];
+keyFrames.push({
+    frame: 0,
+    value: 0,
+});
+keyFrames.push({
+    frame: 5*frameRate,
+    value: 6,
+});
+keyFrames.push({
+    frame: 10*frameRate,
+    value: 0,
+});
+ySlide.setKeys(keyFrames);
+
+box.animations.push(ySlide);*/
+
+// Highlight
+//var hl = new BABYLON.HighlightLayer("hl1", scene);
+//hl.addMesh(box, BABYLON.Color3.Green());
+
+// Glowing
+//var gl = new BABYLON.GlowLayer("glow", scene);
+//gl.intensity = 0.5;
+//gl.addIncludedOnlyMesh(box)
+
+// Level of Details
+//box.addLODLevel(15, knot01);
+
+// Edges
+//box.enableEdgesRendering(); 
+//box.edgesWidth = 4.0;
+//box.edgesColor = new BABYLON.Color4(0, 1, 1, 1);
+
+//hl.removeMesh(box);
+//console.log(box.rotationQuaternion.x);
+//canvas.addEventListener("dbclick", ()=>{
+    //scene.beginAnimation(box, 0, 10 * frameRate, true);
+//});
+
+// Render 
+engine.runRenderLoop(function(){
+    scene.render();
+    
+});
+</script>
+</body>
+</html>
